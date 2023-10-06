@@ -1,0 +1,3 @@
+# Ignore rules for the whole repository
+# It is preferable to ignore per resource: https://aquasecurity.github.io/tfsec/v1.28.4/guides/configuration/ignores/
+exclude: []
