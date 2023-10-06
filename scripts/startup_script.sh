@@ -27,6 +27,7 @@ systemctl enable tailscale
 
 # Install Prometheus node exporter
 # --------------------------------
+if [[ ${prom_exporter_enabled} ]]; then
 useradd --system --no-create-home --shell /usr/sbin/nologin prometheus
 
 NODE_EXPORTER_VERSION=1.6.1
@@ -53,7 +54,7 @@ EOF
 systemctl daemon-reload
 systemctl start node-exporter
 systemctl enable node-exporter
-
+fi
 
 # SSM
 # ----
