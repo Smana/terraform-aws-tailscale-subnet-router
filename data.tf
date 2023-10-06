@@ -21,7 +21,7 @@ data "cloudinit_config" "tailscale_cloud_init" {
   }
 
   part {
-    filename     = "init-cloudflared.sh"
+    filename     = "init-tailscale.sh"
     content_type = "text/x-shellscript"
     content = templatefile(
       "${path.module}/scripts/startup_script.sh",

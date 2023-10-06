@@ -22,8 +22,8 @@ else
 sudo tailscale up --advertise-routes="${advertise_routes}" --authkey="${auth_key}"
 fi
 
-systemctl start tailscale
-systemctl enable tailscale
+systemctl start tailscaled
+systemctl enable tailscaled
 
 # Install Prometheus node exporter
 # --------------------------------
