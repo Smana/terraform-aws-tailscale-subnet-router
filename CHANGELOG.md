@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.1](https://github.com/Smana/terraform-aws-tailscale-subnet-router/compare/v1.0.0...v1.0.1) (2023-10-06)
+
+
+### Bug Fixes
+
+* **vars:** boolean options for prom_exporter and ssm ([#9](https://github.com/Smana/terraform-aws-tailscale-subnet-router/issues/9)) ([68b5345](https://github.com/Smana/terraform-aws-tailscale-subnet-router/commit/68b5345c2e18ce1f4a3611185d849407aac45d3a))
+
 ## 1.0.0 (2023-10-06)
 
 
