@@ -1,5 +1,5 @@
 resource "aws_launch_template" "this" {
-  name_prefix   = format("%v-tailscal-%s", local.prefix, var.region)
+  name_prefix   = format("%v-tailscale-%s", local.prefix, var.region)
   image_id      = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   iam_instance_profile {

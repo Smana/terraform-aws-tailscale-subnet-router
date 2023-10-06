@@ -33,6 +33,7 @@ variable "advertise_routes" {
 variable "auth_key" {
   type        = string
   description = "Tailscale auth key used to join the tailnet"
+  default     = ""
 }
 
 variable "tags" {
