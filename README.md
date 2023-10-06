@@ -26,7 +26,7 @@ task pre-commit
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.4 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 | <a name="requirement_cloudinit"></a> [cloudinit](#requirement\_cloudinit) | ~> 2.3 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.2.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.2 |
 
 ## Providers
 
@@ -34,7 +34,7 @@ task pre-commit
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.20.0 |
 | <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | 2.3.2 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.2.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
 
 ## Modules
 
