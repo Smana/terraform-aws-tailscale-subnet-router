@@ -60,6 +60,12 @@ variable "autoscaling" {
   }
 }
 
+variable "prometheus_node_exporter_enabled" {
+  description = "If set to true install and start a prometheus node exporter"
+  type        = bool
+  default     = false
+}
+
 variable "resources_to_tag" {
   type        = list(string)
   default     = ["instance", "volume"]
