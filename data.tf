@@ -31,6 +31,7 @@ data "cloudinit_config" "tailscale_cloud_init" {
         "advertise_routes"      = join(",", var.advertise_routes)
         "auth_key"              = var.auth_key
         "prom_exporter_enabled" = var.prometheus_node_exporter_enabled
+        "ssm_enabled"           = var.ssm_enabled
       },
     )
   }
