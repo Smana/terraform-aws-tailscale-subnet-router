@@ -66,6 +66,12 @@ variable "prometheus_node_exporter_enabled" {
   default     = false
 }
 
+variable "ssm_enabled" {
+  description = "If set to true install and start the AWS SSM agent"
+  type        = bool
+  default     = false
+}
+
 variable "resources_to_tag" {
   type        = list(string)
   default     = ["instance", "volume"]

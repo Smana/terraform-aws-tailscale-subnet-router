@@ -27,7 +27,7 @@ systemctl enable tailscale
 
 # Install Prometheus node exporter
 # --------------------------------
-if [[ ${prom_exporter_enabled} ]]; then
+if ${prom_exporter_enabled}; then
 useradd --system --no-create-home --shell /usr/sbin/nologin prometheus
 
 NODE_EXPORTER_VERSION=1.6.1
@@ -58,6 +58,8 @@ fi
 
 # SSM
 # ----
+if ${ssm_enabled}; then
 snap install amazon-ssm-agent --classic
 systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
 systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service
+fi

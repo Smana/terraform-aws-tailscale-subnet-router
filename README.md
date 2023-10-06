@@ -32,7 +32,7 @@ task pre-commit
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.20.0 |
 | <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | 2.3.2 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.2.0 |
 
@@ -69,6 +69,7 @@ No modules.
 | <a name="input_prometheus_node_exporter_enabled"></a> [prometheus\_node\_exporter\_enabled](#input\_prometheus\_node\_exporter\_enabled) | If set to true install and start a prometheus node exporter | `bool` | `false` | no |
 | <a name="input_region"></a> [region](#input\_region) | Name of the AWS Region | `string` | n/a | yes |
 | <a name="input_resources_to_tag"></a> [resources\_to\_tag](#input\_resources\_to\_tag) | list of resources we want to tag on aws\_launch\_template | `list(string)` | <pre>[<br>  "instance",<br>  "volume"<br>]</pre> | no |
+| <a name="input_ssm_enabled"></a> [ssm\_enabled](#input\_ssm\_enabled) | If set to true install and start the AWS SSM agent | `bool` | `false` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | Private subnet IDs where the Tailscale instances will be created | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Default tags for all the resources | `map(string)` | `{}` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the Tailscale instances will be created | `string` | n/a | yes |
