@@ -1,5 +1,22 @@
 # Tailscale subnet router
 
+This module allows to provision EC2 instances (part of an Autoscaling group) in order to access to private AWS resources using [Tailscale](https://tailscale.com/)
+
+## Registering automatically at startup
+
+In order for your instances to join automatically your `tailnet` at startup, you need to:
+
+* [Generate an auth key](https://tailscale.com/kb/1085/auth-keys/?q=auth%20key)
+* Add an [autoApprovers](https://tailscale.com/kb/1018/acls/#auto-approvers-for-routes-and-exit-nodes) ACL so that the routes will be advertised
+* Set the variable `auth_key`
+
+## CI
+
+Run the following command in order to check the code before pushing a PR.
+
+```console
+task pre-commit
+```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
