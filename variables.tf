@@ -33,6 +33,19 @@ variable "advertise_routes" {
 variable "auth_key" {
   type        = string
   description = "Tailscale auth key used to join the tailnet"
+  sensitive   = true
+  default     = ""
+}
+
+variable "tailscale_ssh_enabled" {
+  type        = bool
+  description = "If true Tailscale will be started with SSH support"
+  default     = false
+}
+
+variable "extra_args" {
+  type        = string
+  description = "Additionnal arguments to append to the tailscale commmand line"
   default     = ""
 }
 
