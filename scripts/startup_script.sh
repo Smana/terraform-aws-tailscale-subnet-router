@@ -16,11 +16,16 @@ net.ipv6.conf.all.forwarding = 1
 EOF
 sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 
-if [[ -z "${auth_key}" ]]; then
-sudo tailscale up --advertise-routes="${advertise_routes}"
-else
-sudo tailscale up --advertise-routes="${advertise_routes}" --authkey="${auth_key}"
+TS_ARGS=${extra_args}
+
+if ${tailscale_ssh_enabled}; then
+TS_ARGS="$TS_ARGS --ssh"
 fi
+if [[ -n "${auth_key}" ]]; then
+TS_ARGS="$TS_ARGS --authkey=${auth_key}"
+fi
+
+sudo tailscale up --advertise-routes="${advertise_routes}" $TS_ARGS
 
 systemctl start tailscaled
 systemctl enable tailscaled
