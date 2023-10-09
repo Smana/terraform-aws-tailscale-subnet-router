@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.3](https://github.com/Smana/terraform-aws-tailscale-subnet-router/compare/v1.0.2...v1.0.3) (2023-10-09)
+
+
+### Bug Fixes
+
+* set the auth_key as sensitive ([#11](https://github.com/Smana/terraform-aws-tailscale-subnet-router/issues/11)) ([be2b77c](https://github.com/Smana/terraform-aws-tailscale-subnet-router/commit/be2b77c0920f9e62d35017b74cbde01cc66de277))
+
 ### [1.0.2](https://github.com/Smana/terraform-aws-tailscale-subnet-router/compare/v1.0.1...v1.0.2) (2023-10-06)
 
 
