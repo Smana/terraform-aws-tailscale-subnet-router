@@ -10,7 +10,6 @@ In order for your instances to join automatically your `tailnet` at startup, you
 
 * [Generate an auth key](https://tailscale.com/kb/1085/auth-keys/?q=auth%20key) or use the Tailscale provider ([here](/examples/with_provider/) is an example)
 * Add an [autoApprovers](https://tailscale.com/kb/1018/acls/#auto-approvers-for-routes-and-exit-nodes) ACL so that the routes will be advertised
-* Set the variable `auth_key`
 
 ## :rocket: Deploy
 
