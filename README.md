@@ -2,15 +2,29 @@
 
 This module allows to provision EC2 instances (part of an Autoscaling group) in order to access to private AWS resources using [Tailscale](https://tailscale.com/)
 
-## Registering automatically at startup
+![Subnet router](.assets/subnet_router.png)
+
+## ✔️ Prerequisites
 
 In order for your instances to join automatically your `tailnet` at startup, you need to:
 
-* [Generate an auth key](https://tailscale.com/kb/1085/auth-keys/?q=auth%20key)
+* [Generate an auth key](https://tailscale.com/kb/1085/auth-keys/?q=auth%20key) or use the Tailscale provider ([here](/examples/with_provider/) is an example)
 * Add an [autoApprovers](https://tailscale.com/kb/1018/acls/#auto-approvers-for-routes-and-exit-nodes) ACL so that the routes will be advertised
 * Set the variable `auth_key`
 
-## CI
+## :rocket: Deploy
+
+Set the appropriate variables in `variables.tfvars` and run the following command:
+```console
+tofu plan --var-file variables.tfvars
+```
+
+After checking the plan, apply it:
+```console
+tofu apply --var-file variables.tfvars
+```
+
+## 🔍 CI
 
 Run the following command in order to check the code before pushing a PR.
 
