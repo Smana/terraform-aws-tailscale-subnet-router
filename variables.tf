@@ -15,6 +15,15 @@ variable "env" {
   type        = string
 }
 
+variable "ami_filter" {
+  description = "List of maps used to create the AMI filter for the action runner AMI."
+  type        = map(list(string))
+
+  default = {
+    name = ["ubuntu/images/hvm-ssd/ubuntu-lunar-23.04-amd64-server-*"]
+  }
+}
+
 variable "vpc_id" {
   description = "ID of the VPC where the Tailscale instances will be created"
   type        = string
@@ -47,12 +56,6 @@ variable "extra_args" {
   type        = string
   description = "Additionnal arguments to append to the tailscale commmand line"
   default     = ""
-}
-
-variable "tags" {
-  description = "Default tags for all the resources"
-  type        = map(string)
-  default     = {}
 }
 
 variable "instance_type" {
@@ -89,4 +92,10 @@ variable "resources_to_tag" {
   type        = list(string)
   default     = ["instance", "volume"]
   description = "list of resources we want to tag on aws_launch_template"
+}
+
+variable "tags" {
+  description = "Default tags for all the resources"
+  type        = map(string)
+  default     = {}
 }
