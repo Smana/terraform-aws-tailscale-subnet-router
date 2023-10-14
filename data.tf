@@ -1,10 +1,15 @@
-data "aws_ami" "ubuntu" {
-  owners      = ["099720109477"] # AWS account ID of Canonical
-  most_recent = true
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-lunar-23.04-amd64-server-*"]
+data "aws_ami" "this" {
+  most_recent = "true"
+
+  dynamic "filter" {
+    for_each = var.ami_filter
+    content {
+      name   = filter.key
+      values = filter.value
+    }
   }
+
+  owners = ["099720109477"] # AWS account ID of Canonical
 }
 
 data "cloudinit_config" "tailscale_cloud_init" {
