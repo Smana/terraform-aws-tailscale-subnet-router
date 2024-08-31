@@ -1,3 +1,7 @@
+data "aws_vpc" "this" {
+  id = var.vpc_id
+}
+
 data "aws_ami" "this" {
   most_recent = "true"
 
@@ -9,7 +13,7 @@ data "aws_ami" "this" {
     }
   }
 
-  owners = ["099720109477"] # AWS account ID of Canonical
+  owners = [var.ami_owner]
 }
 
 data "cloudinit_config" "tailscale_cloud_init" {

@@ -24,3 +24,13 @@ resource "aws_security_group_rule" "default_egress" {
   protocol          = "-1"
   security_group_id = aws_security_group.this.id
 }
+
+resource "aws_security_group_rule" "prometheus_node_exporter" {
+  description       = "Allow prometheus node exporter"
+  type              = "ingress"
+  from_port         = 9100
+  to_port           = 9100
+  protocol          = "tcp"
+  cidr_blocks       = [data.aws_vpc.this.cidr_block]
+  security_group_id = aws_security_group.this.id
+}

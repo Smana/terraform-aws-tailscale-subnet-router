@@ -20,8 +20,15 @@ variable "ami_filter" {
   type        = map(list(string))
 
   default = {
-    name = ["ubuntu/images/hvm-ssd/ubuntu-lunar-23.04-amd64-server-*"]
+    name = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
+}
+
+variable "ami_owner" {
+  description = "Owner ID of the AMI"
+  type        = string
+
+  default = "099720109477" # AWS account ID of Canonical
 }
 
 variable "vpc_id" {
