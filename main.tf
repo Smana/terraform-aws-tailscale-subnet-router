@@ -18,7 +18,7 @@ resource "aws_launch_template" "this" {
     for_each = toset(var.resources_to_tag)
     content {
       resource_type = tag_specifications.key
-      tags          = local.tags
+      tags          = merge(local.tags, var.tags)
     }
   }
 
