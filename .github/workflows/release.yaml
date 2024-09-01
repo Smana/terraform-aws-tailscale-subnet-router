@@ -1,11 +1,13 @@
 name: Create Release
 
 on:
-  pull_request:
+  push:
     branches:
-      - "main"
-    types:
-      - closed
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
