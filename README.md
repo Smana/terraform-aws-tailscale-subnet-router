@@ -109,17 +109,17 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_advertise_routes"></a> [advertise\_routes](#input\_advertise\_routes) | List of CIDR blocks that are routed through Tailscale | `list(string)` | n/a | yes |
-| <a name="input_ami_filter"></a> [ami\_filter](#input\_ami\_filter) | List of maps used to create the AMI filter for the action runner AMI. | `map(list(string))` | <pre>{<br/>  "name": [<br/>    "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"<br/>  ]<br/>}</pre> | no |
+| <a name="input_ami_filter"></a> [ami\_filter](#input\_ami\_filter) | List of maps used to create the AMI filter for the action runner AMI. | `map(list(string))` | <pre>{<br>  "name": [<br>    "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"<br>  ]<br>}</pre> | no |
 | <a name="input_ami_owner"></a> [ami\_owner](#input\_ami\_owner) | Owner ID of the AMI | `string` | `"099720109477"` | no |
 | <a name="input_auth_key"></a> [auth\_key](#input\_auth\_key) | Tailscale auth key used to join the tailnet | `string` | `""` | no |
-| <a name="input_autoscaling"></a> [autoscaling](#input\_autoscaling) | Autoscaling configuration | <pre>object({<br/>    min = number<br/>    max = number<br/>  })</pre> | <pre>{<br/>  "max": 2,<br/>  "min": 1<br/>}</pre> | no |
+| <a name="input_autoscaling"></a> [autoscaling](#input\_autoscaling) | Autoscaling configuration | <pre>object({<br>    min = number<br>    max = number<br>  })</pre> | <pre>{<br>  "max": 2,<br>  "min": 1<br>}</pre> | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment of the Tailscale instances | `string` | `""` | no |
 | <a name="input_extra_args"></a> [extra\_args](#input\_extra\_args) | Additionnal arguments to append to the tailscale commmand line | `string` | `""` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | EC2 instance type | `string` | `"t3a.micro"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Prefix for the autoscaling group | `string` | `null` | no |
 | <a name="input_prometheus_node_exporter_enabled"></a> [prometheus\_node\_exporter\_enabled](#input\_prometheus\_node\_exporter\_enabled) | If set to true install and start a prometheus node exporter | `bool` | `false` | no |
 | <a name="input_region"></a> [region](#input\_region) | Name of the AWS Region | `string` | n/a | yes |
-| <a name="input_resources_to_tag"></a> [resources\_to\_tag](#input\_resources\_to\_tag) | list of resources we want to tag on aws\_launch\_template | `list(string)` | <pre>[<br/>  "instance",<br/>  "volume"<br/>]</pre> | no |
+| <a name="input_resources_to_tag"></a> [resources\_to\_tag](#input\_resources\_to\_tag) | list of resources we want to tag on aws\_launch\_template | `list(string)` | <pre>[<br>  "instance",<br>  "volume"<br>]</pre> | no |
 | <a name="input_ssm_enabled"></a> [ssm\_enabled](#input\_ssm\_enabled) | If set to true install and start the AWS SSM agent | `bool` | `false` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | Private subnet IDs where the Tailscale instances will be created | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Default tags for all the resources | `map(string)` | `{}` | no |
