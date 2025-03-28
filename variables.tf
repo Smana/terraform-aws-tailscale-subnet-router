@@ -53,6 +53,12 @@ variable "auth_key" {
   default     = ""
 }
 
+variable "tailscale_version" {
+  type        = string
+  description = "Tailscale version to install. Latest version is used if not set."
+  default     = ""
+}
+
 variable "tailscale_ssh_enabled" {
   type        = bool
   description = "If true Tailscale will be started with SSH support"
