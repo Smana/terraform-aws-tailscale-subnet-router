@@ -6,9 +6,13 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Install tailscale
 # -------------------
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/lunar.noarmor.gpg -o /usr/share/keyrings/tailscale-archive-keyring.gpg
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg -o /usr/share/keyrings/tailscale-archive-keyring.gpg
 apt update -qq
-apt install -y tailscale
+if [[ -n "${tailscale_version}" ]]; then
+  apt install -y tailscale=${tailscale_version}
+else
+  apt install -y tailscale
+fi
 
 cat << EOF > /etc/sysctl.d/99-tailscale.conf
 net.ipv4.ip_forward = 1

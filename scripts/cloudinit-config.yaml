@@ -4,7 +4,7 @@ apt:
   sources:
     # Related documentation https://tailscale.com/kb/1275/install-ubuntu-2304/
     tailscale.list:
-      source: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu lunar main"
+      source: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu noble main"
 packages:
   - jq
   - snapd
