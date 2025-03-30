@@ -20,6 +20,9 @@ net.ipv6.conf.all.forwarding = 1
 EOF
 sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 
+# Workaround refer to this issue https://github.com/tailscale/tailscale/issues/13863#issuecomment-2752301262
+echo "TS_DEBUG_FIREWALL_MODE=nftables" | tee -a /etc/default/tailscaled
+
 TS_ARGS=${extra_args}
 
 if ${tailscale_ssh_enabled}; then
