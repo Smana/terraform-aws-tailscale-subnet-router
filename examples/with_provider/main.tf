@@ -1,4 +1,3 @@
-
 data "aws_availability_zones" "available" {}
 
 locals {
@@ -50,7 +49,7 @@ module "tailscale" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name = "vpc-${local.region}-${local.env}"
   cidr = local.vpc_cidr
