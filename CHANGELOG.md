@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.3](https://github.com/Smana/terraform-aws-tailscale-subnet-router/compare/v1.2.2...v1.2.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* upgrade aws provider v6 ([#49](https://github.com/Smana/terraform-aws-tailscale-subnet-router/issues/49)) ([66521aa](https://github.com/Smana/terraform-aws-tailscale-subnet-router/commit/66521aaff09b117be63cef889f0f5ff0fe47ae64))
+
 ## [1.2.2](https://github.com/Smana/terraform-aws-tailscale-subnet-router/compare/v1.2.1...v1.2.2) (2025-03-30)
 
 
