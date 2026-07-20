@@ -35,8 +35,6 @@ data "cloudinit_config" "tailscale_cloud_init" {
     content = templatefile(
       "${path.module}/scripts/startup_script.sh",
       {
-        "region"                = var.region
-        "env"                   = var.env
         "advertise_routes"      = join(",", var.advertise_routes)
         "auth_key"              = var.auth_key
         "tailscale_version"     = var.tailscale_version

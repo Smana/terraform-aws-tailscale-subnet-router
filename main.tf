@@ -7,7 +7,8 @@ resource "aws_launch_template" "this" {
   }
 
   metadata_options {
-    http_tokens = "required"
+    http_endpoint = "enabled"
+    http_tokens   = "required"
   }
 
   vpc_security_group_ids = [aws_security_group.this.id]
