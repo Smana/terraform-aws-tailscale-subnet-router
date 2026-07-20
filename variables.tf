@@ -16,7 +16,7 @@ variable "env" {
 }
 
 variable "ami_filter" {
-  description = "List of maps used to create the AMI filter for the action runner AMI."
+  description = "Map of lists used to create the AMI filter for the Tailscale instances AMI."
   type        = map(list(string))
 
   default = {
@@ -44,6 +44,11 @@ variable "subnet_ids" {
 variable "advertise_routes" {
   description = "List of CIDR blocks that are routed through Tailscale"
   type        = list(string)
+
+  validation {
+    condition     = alltrue([for route in var.advertise_routes : can(cidrhost(route, 0))])
+    error_message = "advertise_routes must be a list of valid CIDR blocks."
+  }
 }
 
 variable "auth_key" {
@@ -67,7 +72,7 @@ variable "tailscale_ssh_enabled" {
 
 variable "extra_args" {
   type        = string
-  description = "Additionnal arguments to append to the tailscale commmand line"
+  description = "Additional arguments to append to the tailscale command line"
   default     = ""
 }
 
@@ -86,6 +91,11 @@ variable "autoscaling" {
   default = {
     min = 1
     max = 2
+  }
+
+  validation {
+    condition     = var.autoscaling.min >= 1 && var.autoscaling.min <= var.autoscaling.max
+    error_message = "autoscaling.min must be greater than or equal to 1 and less than or equal to autoscaling.max."
   }
 }
 

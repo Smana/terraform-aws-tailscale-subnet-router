@@ -29,7 +29,8 @@ Set the appropriate variables in `variables.tfvars`
 ```hcl
 module "tailscale_subnet_router" {
   source  = "Smana/tailscale-subnet-router/aws"
-  version = "1.0.6"
+  version = "~> 1.2"
+
   region = "eu-west-3"
   env    = "dev"
 
@@ -41,8 +42,8 @@ module "tailscale_subnet_router" {
   advertise_routes = [module.vpc.vpc_cidr_block]
 
   tags = {
-    app                         = "tailscale"
-    observability:node-exporter = "true"
+    app                           = "tailscale"
+    "observability:node-exporter" = "true"
   }
 }
 ```
@@ -65,11 +66,11 @@ Run the following command in order to check the code before pushing a PR.
 task pre-commit
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.4 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 6.0 |
 | <a name="requirement_cloudinit"></a> [cloudinit](#requirement\_cloudinit) | ~> 2.3 |
@@ -78,10 +79,10 @@ task pre-commit
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.0.0 |
-| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | 2.3.7 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.55.0 |
+| <a name="provider_cloudinit"></a> [cloudinit](#provider\_cloudinit) | 2.4.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.9.0 |
 
 ## Modules
 
@@ -90,15 +91,15 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_autoscaling_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group) | resource |
 | [aws_iam_instance_profile.tailscale_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_role.tailscale_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.ssm_worker_nodes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_launch_template.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template) | resource |
 | [aws_security_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_security_group_rule.default_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.prometheus_node_exporter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_vpc_security_group_egress_rule.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.prometheus_node_exporter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
 | [random_pet.prefix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
 | [aws_ami.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_vpc.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
@@ -107,14 +108,14 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_advertise_routes"></a> [advertise\_routes](#input\_advertise\_routes) | List of CIDR blocks that are routed through Tailscale | `list(string)` | n/a | yes |
-| <a name="input_ami_filter"></a> [ami\_filter](#input\_ami\_filter) | List of maps used to create the AMI filter for the action runner AMI. | `map(list(string))` | <pre>{<br/>  "name": [<br/>    "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"<br/>  ]<br/>}</pre> | no |
+| <a name="input_ami_filter"></a> [ami\_filter](#input\_ami\_filter) | Map of lists used to create the AMI filter for the Tailscale instances AMI. | `map(list(string))` | <pre>{<br/>  "name": [<br/>    "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"<br/>  ]<br/>}</pre> | no |
 | <a name="input_ami_owner"></a> [ami\_owner](#input\_ami\_owner) | Owner ID of the AMI | `string` | `"099720109477"` | no |
 | <a name="input_auth_key"></a> [auth\_key](#input\_auth\_key) | Tailscale auth key used to join the tailnet | `string` | `""` | no |
 | <a name="input_autoscaling"></a> [autoscaling](#input\_autoscaling) | Autoscaling configuration | <pre>object({<br/>    min = number<br/>    max = number<br/>  })</pre> | <pre>{<br/>  "max": 2,<br/>  "min": 1<br/>}</pre> | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment of the Tailscale instances | `string` | `""` | no |
-| <a name="input_extra_args"></a> [extra\_args](#input\_extra\_args) | Additionnal arguments to append to the tailscale commmand line | `string` | `""` | no |
+| <a name="input_extra_args"></a> [extra\_args](#input\_extra\_args) | Additional arguments to append to the tailscale command line | `string` | `""` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | EC2 instance type | `string` | `"t3a.micro"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Prefix for the autoscaling group | `string` | `null` | no |
 | <a name="input_prometheus_node_exporter_enabled"></a> [prometheus\_node\_exporter\_enabled](#input\_prometheus\_node\_exporter\_enabled) | If set to true install and start a prometheus node exporter | `bool` | `false` | no |
@@ -130,7 +131,10 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
-| <a name="output_autoscaling_group_id"></a> [autoscaling\_group\_id](#output\_autoscaling\_group\_id) | value |
-| <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | value |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+| ---- | ----------- |
+| <a name="output_autoscaling_group_id"></a> [autoscaling\_group\_id](#output\_autoscaling\_group\_id) | ID of the Tailscale autoscaling group |
+| <a name="output_autoscaling_group_name"></a> [autoscaling\_group\_name](#output\_autoscaling\_group\_name) | Name of the Tailscale autoscaling group |
+| <a name="output_iam_role_arn"></a> [iam\_role\_arn](#output\_iam\_role\_arn) | ARN of the IAM role attached to the Tailscale instances |
+| <a name="output_launch_template_id"></a> [launch\_template\_id](#output\_launch\_template\_id) | ID of the launch template used by the Tailscale autoscaling group |
+| <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | ID of the security group attached to the Tailscale instances |
+<!-- END_TF_DOCS -->

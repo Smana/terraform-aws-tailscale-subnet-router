@@ -49,7 +49,7 @@ module "tailscale" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   name = "vpc-${local.region}-${local.env}"
   cidr = local.vpc_cidr
@@ -67,8 +67,5 @@ module "vpc" {
   create_flow_log_cloudwatch_iam_role  = true
   create_flow_log_cloudwatch_log_group = true
 
-  tags = merge(
-    local.tags,
-    local.tags
-  )
+  tags = local.tags
 }

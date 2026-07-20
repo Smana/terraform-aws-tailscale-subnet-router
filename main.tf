@@ -1,5 +1,5 @@
 resource "aws_launch_template" "this" {
-  name_prefix   = format("%v-tailscale-%s", local.prefix, var.region)
+  name_prefix   = local.name
   image_id      = data.aws_ami.this.id
   instance_type = var.instance_type
   iam_instance_profile {
@@ -18,7 +18,7 @@ resource "aws_launch_template" "this" {
     for_each = toset(var.resources_to_tag)
     content {
       resource_type = tag_specifications.key
-      tags          = merge(local.tags, var.tags)
+      tags          = local.all_tags
     }
   }
 
@@ -41,7 +41,7 @@ resource "aws_launch_template" "this" {
 resource "aws_autoscaling_group" "this" {
   vpc_zone_identifier = var.subnet_ids
 
-  name             = format("%v-tailscale-%s", local.prefix, var.region)
+  name             = local.name
   max_size         = var.autoscaling.max
   min_size         = var.autoscaling.min
   desired_capacity = var.autoscaling.min
@@ -53,12 +53,12 @@ resource "aws_autoscaling_group" "this" {
 
   tag {
     key                 = "name"
-    value               = format("%v-tailscale-%s", local.prefix, var.region)
+    value               = local.name
     propagate_at_launch = "true"
   }
   tag {
     key                 = "Name"
-    value               = format("%v-tailscale-%s", local.prefix, var.region)
+    value               = local.name
     propagate_at_launch = "true"
   }
 

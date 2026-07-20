@@ -10,12 +10,12 @@ jobs:
     name: Terraform CI 🛃
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v3
         with:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
