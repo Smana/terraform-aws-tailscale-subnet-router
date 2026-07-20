@@ -1,4 +1,6 @@
 data "aws_vpc" "this" {
+  count = var.prometheus_node_exporter_enabled ? 1 : 0
+
   id = var.vpc_id
 }
 

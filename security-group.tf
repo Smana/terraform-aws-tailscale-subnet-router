@@ -1,11 +1,10 @@
 resource "aws_security_group" "this" {
   description = "Security group for tailscale"
-  name        = format("%v-tailscale-%s", local.prefix, var.region)
+  name        = local.name
   tags = merge(
-    local.tags,
-    var.tags,
+    local.all_tags,
     {
-      Name             = format("%v-tailscale-%s", local.prefix, var.region)
+      Name             = local.name
       tailscale_region = var.region
     }
   )
@@ -25,7 +24,7 @@ resource "aws_vpc_security_group_ingress_rule" "prometheus_node_exporter" {
 
   description       = "Allow prometheus node exporter"
   security_group_id = aws_security_group.this.id
-  cidr_ipv4         = data.aws_vpc.this.cidr_block
+  cidr_ipv4         = data.aws_vpc.this[0].cidr_block
   from_port         = 9100
   to_port           = 9100
   ip_protocol       = "tcp"

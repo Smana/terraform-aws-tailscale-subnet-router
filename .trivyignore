@@ -1,9 +1,8 @@
-# Ignore rules for the whole repository, mostly because the VPC module used
-# in the examples is intentionally not hardened.
+# Repository-wide ignores, only for findings coming from the third-party VPC
+# module used in the examples, which cannot be annotated inline and is
+# intentionally not hardened. Module resources use inline trivy:ignore comments.
 # aws-ec2-no-excessive-port-access
 AVD-AWS-0102
-# aws-ec2-no-public-egress-sgr
-AVD-AWS-0104
 # aws-ec2-no-public-ingress-acl
 AVD-AWS-0105
 # aws-ec2-no-public-ip-subnet
