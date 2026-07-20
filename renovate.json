@@ -2,5 +2,30 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "pre-commit": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update pre-commit-terraform docker tag in taskfile.yaml",
+      "managerFilePatterns": ["/^taskfile\\.yaml$/"],
+      "matchStrings": ["DOCKER_TAG: \"(?<currentValue>v[0-9.]+)\""],
+      "depNameTemplate": "antonbabenko/pre-commit-terraform",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "description": "Update node_exporter version in the startup script",
+      "managerFilePatterns": ["/^scripts/startup_script\\.sh$/"],
+      "matchStrings": ["NODE_EXPORTER_VERSION=(?<currentValue>[0-9.]+)"],
+      "depNameTemplate": "prometheus/node_exporter",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    }
   ]
 }
