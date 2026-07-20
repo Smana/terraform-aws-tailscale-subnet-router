@@ -6,7 +6,11 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Install tailscale
 # -------------------
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg -o /usr/share/keyrings/tailscale-archive-keyring.gpg
+# Derive the codename from the running system so that the tailscale repository
+# always matches the AMI (https://tailscale.com/kb/1275/install-ubuntu-2404)
+. /etc/os-release
+curl -fsSL "https://pkgs.tailscale.com/stable/ubuntu/$VERSION_CODENAME.noarmor.gpg" -o /usr/share/keyrings/tailscale-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu $VERSION_CODENAME main" > /etc/apt/sources.list.d/tailscale.list
 apt update -qq
 if [[ -n "${tailscale_version}" ]]; then
   apt install -y tailscale=${tailscale_version}
@@ -23,7 +27,6 @@ sysctl -p /etc/sysctl.d/99-tailscale.conf
 # Workaround refer to this issue https://github.com/tailscale/tailscale/issues/13863#issuecomment-2752301262
 # tailscaled must be restarted before "tailscale up" so that the firewall mode is effective
 echo "TS_DEBUG_FIREWALL_MODE=nftables" | tee -a /etc/default/tailscaled
-systemctl enable tailscaled
 systemctl restart tailscaled
 
 TS_ARGS=${extra_args}
