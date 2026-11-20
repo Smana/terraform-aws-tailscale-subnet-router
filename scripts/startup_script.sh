@@ -45,7 +45,7 @@ tailscale up --advertise-routes="${advertise_routes}" $TS_ARGS
 if ${prom_exporter_enabled}; then
 useradd --system --no-create-home --shell /usr/sbin/nologin prometheus
 
-NODE_EXPORTER_VERSION=1.12.1
+NODE_EXPORTER_VERSION=1.13.1
 ARCH=$(dpkg --print-architecture)
 wget -O /tmp/node_exporter.tar.gz https://github.com/prometheus/node_exporter/releases/download/v$NODE_EXPORTER_VERSION/node_exporter-$NODE_EXPORTER_VERSION.linux-$ARCH.tar.gz
 tar -xzf /tmp/node_exporter.tar.gz -C /tmp
